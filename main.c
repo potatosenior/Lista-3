@@ -8,6 +8,10 @@
 
 int area_triangulo();
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "cert-err34-c"   //ignorar algumas correcoes chatas na IDE Clion
+#pragma ide diagnostic ignored "cert-flp30-c"
+
 int main() {
     int exercicio = 1000;
 
@@ -16,7 +20,8 @@ int main() {
     printf("Para executar um exercicio especifico, apenas digite o numero do mesmo!\n");
 
 
-    while (exercicio != 0) {
+    while (exercicio != 0)
+    {
         printf("\n\nDigite 0 para sair!");
         printf("\nDigite o exercicio desejado: ");
         scanf("%d", &exercicio);
@@ -500,7 +505,7 @@ int main() {
                         for (int i = 1; i <= input; ++i) {
                             soma += i;
                         }
-                        printf("A soma de 1 ate %d e igual a: %d", input, soma);
+                        printf("A soma de 1 ate %d e igual a: %d\n", input, soma);
 
                         break;
                     }
@@ -508,7 +513,8 @@ int main() {
                     case 2: {
                         int input, soma = 0;
 
-                        printf("Digite um numero: ");
+                        printf("\nSoma com a formula (1-2+3-4+5+...+(2'n' - 1) )");
+                        printf("\nDigite o valor de 'n': ");
                         scanf("%d", &input);
 
                         for (int i = 1; i <= (2 * input - 1); ++i) {
@@ -517,7 +523,7 @@ int main() {
                             else
                                 soma -= i;
                         }
-                        printf("A bagunca e igual a: %d\n", soma);
+                        printf("A soma e igual a: %d\n", soma);
 
                         break;
                     }
@@ -525,7 +531,8 @@ int main() {
                     case 3: {
                         int input, soma = 0;                    //1 + 3 + 5 + 7 + ::: + (2n - 1)
 
-                        printf("Digite um numero: ");
+                        printf("\nSoma com a formula (1 + 3 + 5 + 7 + ... + (2'n' - 1) )");
+                        printf("\nDigite o valor de 'n': ");
                         scanf("%d", &input);
 
                         for (int i = 1; i <= (2 * input - 1); ++i) {
@@ -536,9 +543,12 @@ int main() {
                         break;
                     }
 
-                    default:
+                    default:{
+                        printf("Exercicio invalido! Digite de 1 a 3!");
                         break;
+                    }
                 }
+                break;
             }
 
             case 31: {
@@ -582,8 +592,8 @@ int main() {
             case 33: {
                 int input, contador = 0, valor1, valor2;
 
-                printf("Insira respectivamente 3 numeros inteiros positivos diferente de 0: ");
-                scanf("%d %d %d", &input, &valor1, &valor2);
+                printf("Insira respectivamente 3 numeros inteiros positivos diferente de 0: ");     //Dados n e dois n´umeros inteiros positivos, i e j, diferentes de 0, imprimir em ordem
+                scanf("%d %d %d", &input, &valor1, &valor2);                                        //crescente os n primeiros naturais que s˜ao m´ ultiplos de i ou de j e ou de ambos
 
                 for (int i = 0; contador < input; i++) {
                     if (i % valor1 == 0 || i % valor2 == 0) {
@@ -709,7 +719,7 @@ int main() {
                         }
                         if (c == termo) {
                             printf("\nNao existe valores para 'a', 'b' e 'c' que satisfaca a equacao!\n");
-                            goto fim;
+                            goto fim_invalido;
                         }
                     }
                 }
@@ -724,9 +734,9 @@ int main() {
                 printf("Tempo demorado para descobrir o numero: %lu minutos e %lu segundos",
                        (((hora_final - hora_inicial) / CLOCKS_PER_SEC) / 60),
                        (((hora_final - hora_inicial) / CLOCKS_PER_SEC) % 60));
-                fim:
 
-                break;
+                fim_invalido:
+                    break;
             }
 
             case 39: {
@@ -817,8 +827,26 @@ int main() {
                 break;
             }
 
-            case 44: {
+            case 44: {  //Sequencia fibonacci ate o primeiro numero superior ao numero lido.
+                int input, contador = 0, fibonacci = 0;
 
+                printf("\nDigite ate onde vai a sequencia de Fibonacci:  ");
+                scanf("%d", &input);
+
+                int a[input + 1];
+                a[1] = 1;
+                a[2] = 1;
+                for (int j = 3; j <= input+1; ++j) {
+                    a[j] = 0;
+                }
+
+                printf("\nSequencia Fibonacci ate o primeiro numero superior ao numero inserido: 1 1 ");
+                for (int i = 3; (a[i-1] <= input); i++) {   //enquanto a[i-1] pra verificar o ultimo i calculado, pois essa porra ta aumenta o i(i++) antes de verificar a condicao <= input
+                    a[i] = a[i-1] + a[i-2];
+                    printf(" %d", a[i]);
+                }
+
+                break;
             }
 
             case 45: {
@@ -833,6 +861,7 @@ int main() {
     }
     return 0;
 }
+#pragma clang diagnostic pop
 
 int area_triangulo(int base, int altura) {
     int result;
