@@ -1105,4 +1105,4 @@ int area_triangulo(int base, int altura) {
 	result = (base * altura) / 2;
 	return result;
 }
-
+//aa
