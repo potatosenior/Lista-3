@@ -7,6 +7,7 @@
 #include <time.h>
 
 int area_triangulo();
+int numero_primo();
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "cert-err34-c"   //ignorar algumas correcoes chatas na IDE Clion
@@ -925,36 +926,36 @@ int main() {
 					{
 						case 1: {
 							printf("\nDigite o primeiro numero: ");
-							scanf("%d", &input_1);
+							scanf("%f", &input_1);
 							printf("\nDigite o segundo numero: ");
-							scanf("%d", &input_2);
+							scanf("%f", &input_2);
 							printf("\n%.2f + %.2f = %.2f", input_1, input_2, input_1 + input_2);
 							break;
 						}
 
 						case 2: {
 							printf("\nDigite o primeiro numero: ");
-							scanf("%d", &input_1);
+							scanf("%f", &input_1);
 							printf("\nDigite o segundo numero: ");
-							scanf("%d", &input_2);
+							scanf("%f", &input_2);
 							printf("\n%.2f - %.2f = %.2f", input_1, input_2, input_1 - input_2);
 							break;
 						}
 
 						case 3: {
 							printf("\nDigite o primeiro numero: ");
-							scanf("%d", &input_1);
+							scanf("%f", &input_1);
 							printf("\nDigite o segundo numero: ");
-							scanf("%d", &input_2);
+							scanf("%f", &input_2);
 							printf("\n%.2f x %.2f = %.2f", input_1, input_2, input_1 * input_2);
 							break;
 						}
 
 						case 4: {
 							printf("\nDigite o primeiro numero: ");
-							scanf("%d", &input_1);
+							scanf("%f", &input_1);
 							printf("\nDigite o segundo numero: ");
-							scanf("%d", &input_2);
+							scanf("%f", &input_2);
 							printf("\n%.2f / %.2f = %.2f", input_1, input_2, input_1 / input_2);
 							break;
 						}
@@ -972,26 +973,23 @@ int main() {
 
 			case 48:
 			{//Faca um programa que some os termos de valor par da sequencia de Fibonacci, cujos valores nao ultrapassem quatro milhoes.
-				unsigned long long int soma = 0;
+				int soma = 0;
 				int input = 50, valor = 4000000;
-				unsigned long long int a[input+1];
+				int a[input+1];
 
 				a[1] = 1;
 				a[2] = 1;
-				for (int j = 3; j <= input+1; ++j) {
-					a[j] = 0;
-				}
 
 				printf("\nSequencia Fibonacci cujos valores nao ultrapassem quatro milhoes: 1 1");
 				for (int i = 3;; i++) {   //enquanto a[i-1] pra verificar o ultimo i calculado, pois essa porra ta aumenta o i(i++) antes de verificar a condicao <= input
 					a[i] = a[i-1] + a[i-2];
 					if(a[i] >= valor)						//parar a operacao se a[i] for maior que o numero desejado
 						break;
-					printf(" %lld", a[i]);
+					printf(" %d", a[i]);
 					if(a[i]%2 == 0)
 						soma += a[i];
 				}
-				printf("\nSoma dos numeros pares da sequencia: %lld", soma);
+				printf("\nSoma dos numeros pares da sequencia: %d", soma);
 
 				break;
 			}
@@ -1088,6 +1086,251 @@ int main() {
 				break;
 			}
 
+			case 54:
+			{
+				int input;
+
+				printf("Digite um numero inteiro: ");
+				scanf("%d", &input);
+
+				for (int i = 2; i <= input; ++i) {		//gambiarra
+					if(i == input){
+						printf("O numero e primo!\n");	//se chegar ate i == input, e pq ele nao e divisivel por nenhum numero entre 2 e ele mesmo, logo == primo
+						break;
+					}
+					if(input % i == 0){
+						printf("O numero nao e primo!");	//se for divisivel por qualquer numero antes de input ele nao e primo
+						break;
+					}
+				}
+				break;
+			}
+
+			case 55:
+			{
+				int input, soma = 0;
+
+				printf("Digite um numero inteiro nao negativo: ");
+				scanf("%d", &input);
+
+				for (int i = 2; i <= input; ++i) {
+					if (numero_primo(i) == 1){				//funcao numero_primo embaixo da main() \/
+						soma += i;
+					}
+				}
+				printf("A soma dos numeros primos de 0 ate %d e igual a: %d", input, soma);
+
+				break;
+			}
+
+			case 56:
+			{
+				int numero = 2000000, soma = 0;				//Muito lento, demorando 8 minutos pra achar o resultado
+
+				printf("Soma de todos numeros primos abaixo de 2 milhoes!\n");
+
+				for (int i = 2; i <= numero; ++i) {
+					if (numero_primo(i) == 1){				//funcao numero_primo embaixo da main() \/
+						soma += i;
+					}
+				}
+				printf("A soma dos numeros primos de 0 ate 2.000.000 e igual a: %d", soma);
+
+				break;
+			}
+
+			case 57:
+			{
+				int A, B, contador = 0;
+
+				printf("Digite o comeco do intervalo: ");
+				scanf("%d", &A);
+				printf("Digite o fim do intervalo: ");
+				scanf("%d", &B);
+
+				for (int i = A; i <= B; ++i) {
+					if (numero_primo(i) == 1){				//funcao numero_primo embaixo da main() \/
+						contador++;
+					}
+				}
+				printf("Existem %d numeros primos entre %d e %d.", contador, A, B);
+
+				break;
+			}
+
+			case 58:
+			{
+				int A, B, soma = 0;
+
+				printf("Digite o comeco do intervalo: ");
+				scanf("%d", &A);
+				printf("Digite o fim do intervalo: ");
+				scanf("%d", &B);
+
+				for (int i = A; i <= B; ++i) {
+					if (numero_primo(i) == 1){				//funcao numero_primo embaixo da main() \/
+						soma += i;
+					}
+				}
+				printf("A soma dos numeros primos entre %d e %d eh igual a: %d", A, B, soma);
+
+				break;
+			}
+
+			case 59:
+			{
+				double preco_kwh, consumo_mes_habitante, maior_consumo = 0, menor_consumo = 99999999999, media_consumo_total,
+				total_residencial = 0, total_comercial = 0, total_industrial = 0;
+				int qntd_habitantes, categoria;
+
+				printf("Digite a quantidade de habitantes da cidade: ");
+				scanf("%d", &qntd_habitantes);
+				printf("Digite o valor do Kw/h da cidade: ");
+				scanf("%lf", &preco_kwh);
+				printf("Categorias:\n1 - Residencial\n2 - Comercial\n3 - Industrial\n");
+
+				for (int i = 1; i <= qntd_habitantes; ++i)
+				{
+					do {
+						printf("Digite a categoria do %d habitante(1, 2 ou 3): ", i);
+						scanf("%d", &categoria);
+						if (categoria != 1 && categoria != 2 && categoria != 3 )
+							printf("Categoria invalida!!!\n");
+					} while ( categoria != 1 && categoria != 2 && categoria != 3 );	//Loop para garantir q o usuario so digite categorias validas
+
+					printf("Digite o consumo do mes: ");
+					scanf("%lf", &consumo_mes_habitante);
+
+					if ( consumo_mes_habitante > maior_consumo)
+						maior_consumo = consumo_mes_habitante;
+					if ( consumo_mes_habitante < menor_consumo)
+						menor_consumo = consumo_mes_habitante;
+
+					if ( categoria == 1){
+						total_residencial += consumo_mes_habitante;
+					}
+					if ( categoria == 2){
+						total_comercial += consumo_mes_habitante;
+					}
+					if ( categoria == 3){
+						total_industrial += consumo_mes_habitante;
+					}
+				}
+				media_consumo_total = (total_comercial + total_industrial + total_residencial) / qntd_habitantes;
+
+				printf("\nO maior consumo foi um total de %lf Kw/h que e igual a RS%.2lf Reais!", maior_consumo, maior_consumo*preco_kwh);
+				printf("\nO menor consumo foi um total de %lf Kw/h que e igual a RS%.2lf Reais!", menor_consumo, menor_consumo*preco_kwh);
+				printf("\n---------------------------------------------------------------------");
+				printf("\nA media de consumo dos habitantes foi de %lf Kw/h que e igual a RS%.lf Reais!", media_consumo_total, media_consumo_total*preco_kwh);
+				printf("\n---------------------------------------------------------------------");
+				printf("\nO total do consumo da categoria 1 - Residencial foi de %lf Kw/h que e igual a RS%.2lf Reais!", total_residencial, total_residencial*preco_kwh);
+				printf("\nO total do consumo da categoria 2 - Comercial foi de %lf Kw/h que e igual a RS%.2lf Reais!", total_comercial, total_comercial*preco_kwh);
+				printf("\nO total do consumo da categoria 3 - Industrial foi de %lf Kw/h que e igual a RS%.2lf Reais!", total_industrial, total_industrial*preco_kwh);
+
+				break;
+			}
+
+			case 60:
+			{
+				int qntd_numeros_inseridos = 0, qntd_numeros_pares = 0;
+				double soma = 0, media, maior_numero = 0, menor_numero = 9999999, soma_numeros_pares = 0, media_nums_pares, input;
+
+				printf("para sair digite 0\n");
+				do{
+					printf("Digite um numero: ");
+					scanf("%lf", &input);
+					if(input == 0)
+						break;
+
+					soma += input;
+					if(input > maior_numero)
+						maior_numero = input;
+					if(input < menor_numero)
+						menor_numero = input;
+					if((fmod(input, 2.0)) == 0.0){		// fmod é modulo de um float, como se fosse (input%2)
+						qntd_numeros_pares++;
+						soma_numeros_pares += input;
+					}
+
+					qntd_numeros_inseridos++;
+				}while (input != 0);
+				media = soma/qntd_numeros_inseridos;
+				media_nums_pares = soma_numeros_pares/qntd_numeros_pares;
+
+				printf("\nA soma dos numeros digitados e igual a: %.4lf", soma);
+				printf("\nA quantidade de numeros digitados foi: %d", qntd_numeros_inseridos);
+				printf("\nA media dos numeros digitados e: %lf", media);
+				printf("\nO maior numero digitado foi: %.2lf", maior_numero);
+				printf("\nO menor numero digitado foi: %.2lf", menor_numero);
+				printf("\nA media dos numeros pares digitados e: %.4lf", media_nums_pares);
+
+				break;
+			}
+
+			case 61:
+			{
+				int palindromo, maior_palindromo = 0;
+				int numero, unidade, dezena, centena, milhar_unidade, milhar_dezena, milhar_centena;
+				int parar_for = 0, multi1, multi2;
+				char decimais[6];
+
+				//91*99 = 	9009	90 09	9009%10000	9009%1000 9009%100 9009%10		num%100000 num%10000 num%1000 num%100 num%10
+				//								9			0		  0		  9  		  	1			0		0		 0		 0
+				//			100001			100001%1000000	100001%100000	100001%10000	100001%1000	100001%100	100001%10	1
+				//									1			0				0				0			0			1
+
+				for (int i = 999; i > 0; --i)
+				{
+					multi1 = i;
+					for (int j = 999; j > 0; --j)
+					{
+						multi2 = j;
+						numero = i*j;
+
+						//		|string|  |int| |numero|
+						sprintf(decimais, "%i", numero);	//transforma o numero em uma string, e cada algarismo do numero fica em uma posicao do vetor strin(decimais)
+															//comecando pela posicao decimais[0]
+						unidade = decimais[0]-48;
+						dezena = (decimais[1]-48) * 10;				//ele armazena o numero com o codigo da tabela ascii, entao pra pegar o numero de vdd tem q subtrair 48
+						centena = (decimais[2]-48) * 100;			// tipo, '9' na tabela é 56, entao pra pegar o '9' como numero 9, subtrai 48
+						milhar_unidade = (decimais[3]-48) * 1000;
+						milhar_dezena = (decimais[4]-48) * 10000;
+						milhar_centena = (decimais[5]-48) * 100000;
+
+						palindromo = unidade+dezena+centena+milhar_unidade+milhar_dezena+milhar_centena;
+
+
+						if (palindromo == numero){
+							//parar_for = 1;
+							if (palindromo > maior_palindromo)	//pegar o maior palindromo possivel
+								maior_palindromo = palindromo;
+							//printf("%d * %d = %d\n", multi1, multi2, maior_palindromo);	<--- debug
+							break;
+						}
+					}
+					if (parar_for == 1)
+						break;
+				}
+				printf("O maior palindromo paga uma multiplicacao de dois numeros de 3 digitos e: %d", maior_palindromo);
+
+				break;
+			}
+
+			case 62:
+			{
+				int soma_letras = 0;
+
+				for (int i = 1; i <= 1000; ++i)
+				{
+					if(i/100 < 0)
+					{
+						
+					}
+				}
+
+			}
+
+
 			default:
 				if(exercicio != 0)
 					printf("Numero invalido!");
@@ -1105,4 +1348,14 @@ int area_triangulo(int base, int altura) {
 	result = (base * altura) / 2;
 	return result;
 }
-//aaa
+
+int numero_primo(int input){
+	for (int i = 2; i <= input; ++i) {		//gambiarra
+		if(i == input){						//se chegar ate i == input, e pq ele nao e divisivel por nenhum numero entre 2 e ele mesmo, logo == primo
+			return 1;
+		}
+		if(input % i == 0){					//se for divisivel por qualquer numero antes de input ele nao e primo
+			return 0;
+		}
+	}
+}
