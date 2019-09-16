@@ -1316,7 +1316,7 @@ int main() {
 				break;
 			}
 
-			case 62:
+			case 62:		//incompleto 
 			{
 				int soma_letras = 0;
 
