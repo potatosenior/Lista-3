@@ -18,7 +18,8 @@ int numero_primo();
 int main() {
 	int exercicio = 1000;
 
-	printf("-----------Bem vindo a lista de exercicios! no git ------------\n");
+	printf("-----------Bem vindo a lista de exercicios! ------------\n");
+	printf("\nhttps://github.com/potatosenior/listas_git\n");
 	printf("Para sair digite 0!\n");
 	printf("Para executar um exercicio especifico, apenas digite o numero do mesmo!\n");
 
