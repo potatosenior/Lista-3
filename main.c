@@ -15,7 +15,7 @@ int numero_primo();
 #pragma ide diagnostic ignored "cert-msc30-c"
 #pragma ide diagnostic ignored "cert-msc32-c"
 
-int main() {
+int main(void) {
 	int exercicio = 1000;
 
 	printf("-----------Bem vindo a lista de exercicios! ------------\n");
@@ -36,7 +36,7 @@ int main() {
 			case 1: {
 				int cont = 1;
 
-				for (int j = 0; cont <= 3; j++) {
+				for (int j = 1; cont <= 5; j++) {
 					if(j % 3 == 0) {
 						printf("o numero %d e multiplo de 3!\n", j);
 						cont++;
@@ -50,10 +50,12 @@ int main() {
 
 				for (int i = 1; i <= 100; i++)
 					printf("%d ", i);
+				printf("\n");
 				while (cont <= 100) {
 					printf("%d ", cont);
 					cont++;
 				}
+                printf("\n");
 				do {
 					printf("%d ", cont2);
 					cont2++;
@@ -112,7 +114,7 @@ int main() {
 				printf("A media dos 10 numeros inseridos e de: %d", media / 10);
 
 				break;
-			}
+
 
 			case 7: {
 				int valores[9],
