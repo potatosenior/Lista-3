@@ -571,12 +571,11 @@ int main() {
 				int valor[3], input;
 				srand((unsigned) time(NULL));    //faz a funcao rand() ser diferente a cada execucao
 
-				printf("Digite quantas vezes quer lançar os dados: ");
+				printf("Digite quantas vezes quer lancar os dois dados: ");
 				scanf("%d", &input);
 
 				for (int i = 1; i <= input; i++) {
-					valor[1] = (rand() % 6) +
-							   (1);          //gera um numero aleatorio entre 6 e 1  https://pt.stackoverflow.com/questions/210172/gerar-números-aleatórios-em-c
+					valor[1] = (rand() % 6) + (1);      //gera um numero aleatorio entre 6 e 1  https://pt.stackoverflow.com/questions/210172/gerar-números-aleatórios-em-c
 					valor[2] = (rand() % 6) + (1);
 
 					printf("O numero sorteado no dado 1 foi: %d, no 2 dado foi: %d\n", valor[1], valor[2]);
@@ -601,7 +600,7 @@ int main() {
 
 				for (int i = 0; contador < input; i++) {
 					if(i % valor1 == 0 || i % valor2 == 0) {
-						printf("O numero %d e multiplo de %d e/ou %d e %d!\n", i, valor1, valor2);
+						printf("O numero %d e multiplo de %d e/ou %d!\n", i, valor1, valor2);
 						contador++;
 					}
 				}
@@ -617,18 +616,15 @@ int main() {
 				printf("Digite ate qual numero ser calculado o MMC, de 1 ate: ");
 				scanf("%d", &input);
 
-				for (int l = 1; l <=
-								input; l++) {        //Atribui valor equivalente ao intervalo no vetor valores[], ex valores[5] = 5
+				for (int l = 1; l <= input; l++) {        //Atribui valor equivalente ao intervalo no vetor valores[], ex valores[5] = 5
 					valores[l] = l;
 					//printf(" valores[%d] = %d", l, l);
 				}
 
-				for (int i = 1;
-					 Achou_o_numero != 1; i++)    //  Loop principal, executa o calculo enquanto nao achar o numero
+				for (int i = 1; Achou_o_numero != 1; i++)    //  Loop principal, executa o calculo enquanto nao achar o numero
 				{
 					for (int l = 1; l <= input; ++l) {
-						if(valores[l] ==
-						   1) {              //se o numero ja for 1, nao precisa fatora-lo, entao pula pro proximo
+						if(valores[l] == 1) {              //se o numero ja for 1, nao precisa fatora-lo, entao pula pro proximo
 							//printf("\n -- valores[%d] = 1, continue -- \n", l);
 							continue;
 						}
@@ -636,23 +632,18 @@ int main() {
 						if(valores[l] % 2 == 0) {          //Divide todos os numeros pares por 2
 							valores[l] /= 2;
 							multiplicar_por_dois = 1;
-							//printf("\n| PAR |valores[%d] atual = %lu|\n", l, valores[l]);
 						}
 					}
 					for (int j = 1; j <= input; j++)       //  Divide os numeros impares e primos
 					{
-						if(valores[j] % 2 != 0 && impar_calculado ==
-												  0)   //  Verifica se o numero e impar ou nao e se ja foram calculados os impares nesse ciclo 0 = falso
+						if(valores[j] % 2 != 0 && impar_calculado == 0)   //  Verifica se o numero e impar ou nao e se ja foram calculados os impares nesse ciclo 0 = falso
 						{
-							for (int k = 3; impar_calculado ==
-											0; k++)  //  Comeca a tentar dividir o numero impar por 3, se divir algum, tentara dividir todos os outros por 3 tambem
+							for (int k = 3; impar_calculado == 0; k++)  //  Comeca a tentar dividir o numero impar por 3, se divir algum, tentara dividir todos os outros por 3 tambem
 							{                                           //  Se nao for por 3, aumenta 1 e tenta todos de novo, se dividir algum por qualquer numero, ele tentara fatorar todos
-								for (int l = 1; l <=
-												input; l++) {     //  pelo mesmo numero e apos isso, ele saira da funcao e multiplicara o numero divido no resultado
+								for (int l = 1; l <= input; l++) {     //  pelo mesmo numero e apos isso, ele saira da funcao e multiplicara o numero divido no resultado
 									if(valores[l] % k == 0) {
 										valores[l] /= k;
 										divisor_impar_atual = k;
-										//printf("\n| IMPAR | valores[%d] atual = %lu|\n", l, valores[l]);
 										impar_calculado = 1;            //  Afirma que ja fatorou os numeros por algum numero, logo precisa multiplicar o numero dividido no resultado
 									}
 								}
@@ -663,8 +654,7 @@ int main() {
 
 					impar_calculado = 0;              //  Zera a variavel pra poder encontrar outro numero impar ou primo que precise ser fatorado
 
-					if(multiplicar_por_dois ==
-					   1)     //  Se dividiu algum(s) numero(s) por 2, multiplica o resultado por 2
+					if(multiplicar_por_dois == 1)     //  Se dividiu algum(s) numero(s) por 2, multiplica o resultado por 2
 						resultado *= 2;
 
 					multiplicar_por_dois = 0;                 //  Zera a variavel pra poder verificar se ainda ha algum numero PAR pra ser fatorado
@@ -672,8 +662,7 @@ int main() {
 
 					Achou_o_numero = 1;                       //  Variavel bool, (verdadeiro == 1 ou falso == 0)
 
-					for (int j = 1; j <=
-									input; ++j) {       //  Verifica se ja achou o numero (quando o vetor valore[] estiver totalmente = 1
+					for (int j = 1; j <= input; ++j) {       //  Verifica se ja achou o numero (quando o vetor valores[] estiver totalmente = 1
 						if(valores[j] != 1) {
 							Achou_o_numero = 0;
 							break;
